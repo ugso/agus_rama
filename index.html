@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agus & Rama - 02.05.2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,27 +13,24 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: #faf9f7;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
             background: white;
             border-radius: 2px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
             overflow: hidden;
-            margin: 20px 0;
+            margin: 20px auto;
         }
 
         .header {
-            background: #6b7c59;
+            background: #5a6b4a;
             color: white;
             padding: 60px 40px;
             text-align: center;
@@ -42,19 +40,20 @@
 
         .paw {
             position: absolute;
-            opacity: 0.15;
-            font-size: 24px;
+            opacity: 0.25;
+            font-size: 28px;
         }
 
-        .paw:nth-child(1) { top: 20px; left: 30px; transform: rotate(-15deg); }
-        .paw:nth-child(2) { top: 40px; right: 50px; transform: rotate(25deg); }
-        .paw:nth-child(3) { bottom: 30px; left: 60px; transform: rotate(10deg); }
-        .paw:nth-child(4) { bottom: 50px; right: 40px; transform: rotate(-20deg); }
-        .paw:nth-child(5) { top: 50%; left: 15%; transform: rotate(35deg); }
-        .paw:nth-child(6) { top: 60%; right: 20%; transform: rotate(-25deg); }
+        .header .paw:nth-child(1) { top: 20px; left: 30px; transform: rotate(-15deg); }
+        .header .paw:nth-child(2) { top: 40px; right: 50px; transform: rotate(25deg); }
+        .header .paw:nth-child(3) { bottom: 30px; left: 60px; transform: rotate(10deg); }
+        .header .paw:nth-child(4) { bottom: 50px; right: 40px; transform: rotate(-20deg); }
+        .header .paw:nth-child(5) { top: 50%; left: 15%; transform: rotate(35deg); }
+        .header .paw:nth-child(6) { top: 60%; right: 20%; transform: rotate(-25deg); }
 
         .names {
-            font-size: 3em;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5em;
             font-weight: 300;
             margin-bottom: 15px;
             letter-spacing: 4px;
@@ -65,7 +64,7 @@
         .ampersand {
             font-size: 1em;
             font-style: italic;
-            font-weight: 200;
+            font-weight: 300;
         }
 
         .date {
@@ -82,16 +81,29 @@
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            position: relative;
         }
 
+        .section-paw {
+            position: absolute;
+            opacity: 0.08;
+            font-size: 40px;
+            color: #5a6b4a;
+        }
+
+        .section-paw.top-left { top: -10px; left: 10px; transform: rotate(-20deg); }
+        .section-paw.top-right { top: -10px; right: 10px; transform: rotate(15deg); }
+        .section-paw.bottom-right { bottom: -10px; right: 20px; transform: rotate(-25deg); }
+
         h2 {
-            color: #6b7c59;
-            font-size: 1.5em;
+            font-family: 'Cormorant Garamond', serif;
+            color: #5a6b4a;
+            font-size: 2.2em;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         p {
@@ -113,11 +125,12 @@
             padding: 25px;
             background: #faf9f7;
             border-radius: 2px;
+            position: relative;
         }
 
         .detail-label {
             font-size: 0.85em;
-            color: #6b7c59;
+            color: #5a6b4a;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -154,7 +167,7 @@
         .countdown-number {
             font-size: 2em;
             font-weight: 300;
-            color: #6b7c59;
+            color: #5a6b4a;
         }
 
         .countdown-label {
@@ -164,29 +177,146 @@
             font-weight: 300;
         }
 
-        .rsvp-placeholder {
-            background: #6b7c59;
+        .dress-code {
+            background: #5a6b4a;
             color: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 2px;
             text-align: center;
         }
 
-        .rsvp-placeholder h3 {
-            font-size: 1.5em;
+        .dress-code h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8em;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             letter-spacing: 1px;
         }
 
-        .rsvp-placeholder p {
+        .dress-code p {
             color: rgba(255,255,255,0.9);
             font-weight: 300;
         }
 
-        @media (max-width: 600px) {
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5a6b4a;
+            font-size: 3em;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+        .map-container {
+            margin-top: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .map-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .map-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #5a6b4a;
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 400;
+            transition: background 0.3s ease;
+        }
+
+        .map-link:hover {
+            background: #4a5a3a;
+        }
+
+        .rsvp-form {
+            background: #faf9f7;
+            padding: 40px;
+            border-radius: 2px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #5a6b4a;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #5a6b4a;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 1.1em;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: #4a5a3a;
+        }
+
+        @media (max-width: 768px) {
             .names {
-                font-size: 2.2em;
+                font-size: 2.5em;
             }
             
             .countdown-grid {
@@ -199,6 +329,19 @@
             
             .content {
                 padding: 30px 20px;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-placeholder:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .map-links {
+                flex-direction: column;
             }
         }
     </style>
@@ -220,52 +363,122 @@
 
         <div class="content">
             <div class="section">
+                <div class="section-paw top-left">🐾</div>
                 <h2>Nos casamos</h2>
                 <p>Los invitamos a celebrar nuestro casamiento</p>
             </div>
 
-            <div class="details-grid">
-                <div class="detail-item">
-                    <div class="detail-label">Fecha</div>
-                    <div class="detail-value">2 de Mayo, 2026</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Hora</div>
-                    <div class="detail-value">17:00 hs</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Lugar</div>
-                    <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
-                </div>
-            </div>
-
-            <div class="countdown">
-                <h2 style="margin-bottom: 10px;">Faltan</h2>
-                <div class="countdown-grid">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">0</div>
-                        <div class="countdown-label">Días</div>
+            <div class="section">
+                <div class="section-paw top-right">🐾</div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Fecha</div>
+                        <div class="detail-value">2 de Mayo, 2026</div>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">0</div>
-                        <div class="countdown-label">Horas</div>
+                    <div class="detail-item">
+                        <div class="detail-label">Hora</div>
+                        <div class="detail-value">17:00 hs</div>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">0</div>
-                        <div class="countdown-label">Minutos</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">0</div>
-                        <div class="countdown-label">Segundos</div>
+                    <div class="detail-item">
+                        <div class="detail-label">Lugar</div>
+                        <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
                     </div>
                 </div>
             </div>
 
             <div class="section">
-                <div class="rsvp-placeholder">
-                    <h3>Confirmación de asistencia</h3>
-                    <p>Próximamente habilitaremos el formulario de confirmación</p>
+                <div class="section-paw bottom-right">🐾</div>
+                <h2>Dress Code</h2>
+                <div class="dress-code">
+                    <h3>Formal</h3>
+                    <p>Te pedimos que vengas elegante para celebrar con nosotros</p>
                 </div>
+            </div>
+
+            <div class="section">
+                <div class="section-paw top-left">🐾</div>
+                <h2>Fotos</h2>
+                <div class="photo-gallery">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-placeholder">📷</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-paw top-right">🐾</div>
+                <h2>¿Cómo llegar?</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="map-links">
+                    <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link">Abrir en Google Maps</a>
+                    <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link">Abrir en Waze</a>
+                </div>
+                <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
+            </div>
+
+            <div class="section">
+                <div class="section-paw bottom-right">🐾</div>
+                <h2>Alojamiento</h2>
+                <p>Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
+            </div>
+
+            <div class="section">
+                <div class="section-paw top-left">🐾</div>
+                <h2>Faltan</h2>
+                <div class="countdown">
+                    <div class="countdown-grid">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">0</div>
+                            <div class="countdown-label">Días</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">0</div>
+                            <div class="countdown-label">Horas</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">0</div>
+                            <div class="countdown-label">Minutos</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="seconds">0</div>
+                            <div class="countdown-label">Segundos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-paw top-right">🐾</div>
+                <h2>Confirmación de asistencia</h2>
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="restricciones">Restricciones alimentarias</label>
+                        <select id="restricciones" name="restricciones">
+                            <option value="">Ninguna</option>
+                            <option value="vegetariano">Vegetariano</option>
+                            <option value="vegano">Vegano</option>
+                            <option value="celiaco">Celíaco</option>
+                            <option value="lactosa">Intolerante a la lactosa</option>
+                            <option value="otra">Otra (especificar en comentarios)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cancion">Pedido de canción</label>
+                        <textarea id="cancion" name="cancion" placeholder="¿Hay alguna canción que te gustaría escuchar?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Confirmar asistencia</button>
+                </form>
             </div>
         </div>
     </div>
@@ -293,6 +506,11 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por confirmar! Próximamente conectaremos este formulario a una base de datos.');
+        });
     </script>
 </body>
 </html>
