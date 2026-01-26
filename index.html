@@ -17,6 +17,53 @@
             background: #faf9f7;
             min-height: 100vh;
             padding: 20px;
+            padding-top: 80px;
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(90, 107, 74, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sticky-nav-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sticky-title {
+            font-family: 'Cormorant Garamond', serif;
+            color: white;
+            font-size: 1.5em;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+            font-weight: 300;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
         }
 
         .container {
@@ -315,6 +362,22 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .sticky-nav {
+                padding: 10px 15px;
+            }
+
+            .sticky-title {
+                font-size: 1.2em;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             .names {
                 font-size: 2.5em;
             }
@@ -347,6 +410,19 @@
     </style>
 </head>
 <body>
+    <nav class="sticky-nav">
+        <div class="sticky-nav-content">
+            <div class="sticky-title">Agus & Rama</div>
+            <div class="nav-links">
+                <a href="#detalles">Detalles</a>
+                <a href="#dresscode">Dress Code</a>
+                <a href="#fotos">Fotos</a>
+                <a href="#ubicacion">Ubicación</a>
+                <a href="#rsvp">RSVP</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
             <div class="paw">🐾</div>
@@ -364,11 +440,30 @@
         <div class="content">
             <div class="section">
                 <div class="section-paw top-left">🐾</div>
-                <h2>Nos casamos</h2>
-                <p>Los invitamos a celebrar nuestro casamiento</p>
+                <h2>Faltan</h2>
+                <div class="countdown">
+                    <div class="countdown-grid">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">0</div>
+                            <div class="countdown-label">Días</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">0</div>
+                            <div class="countdown-label">Horas</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">0</div>
+                            <div class="countdown-label">Minutos</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="seconds">0</div>
+                            <div class="countdown-label">Segundos</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="detalles">
                 <div class="section-paw top-right">🐾</div>
                 <div class="details-grid">
                     <div class="detail-item">
@@ -386,7 +481,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="dresscode">
                 <div class="section-paw bottom-right">🐾</div>
                 <h2>Dress Code</h2>
                 <div class="dress-code">
@@ -395,7 +490,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="fotos">
                 <div class="section-paw top-left">🐾</div>
                 <h2>Fotos</h2>
                 <div class="photo-gallery">
@@ -407,7 +502,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="ubicacion">
                 <div class="section-paw top-right">🐾</div>
                 <h2>¿Cómo llegar?</h2>
                 <div class="map-container">
@@ -451,7 +546,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="rsvp">
                 <div class="section-paw top-right">🐾</div>
                 <h2>Confirmación de asistencia</h2>
                 <form class="rsvp-form" id="rsvpForm">
