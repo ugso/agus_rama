@@ -20,6 +20,10 @@
             padding-top: 80px;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -46,6 +50,12 @@
             font-size: 1.5em;
             font-weight: 300;
             letter-spacing: 2px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .sticky-title:hover {
+            opacity: 0.7;
         }
 
         .nav-links {
@@ -128,8 +138,29 @@
         }
 
         .section {
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             position: relative;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(90, 107, 74, 0.1);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section::after {
+            content: '🐾';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            opacity: 0.15;
+            color: #5a6b4a;
+        }
+
+        .section:last-child::after {
+            display: none;
         }
 
         .section-paw {
@@ -279,30 +310,40 @@
 
         .map-container iframe {
             width: 100%;
-            height: 400px;
+            height: 300px;
             border: none;
         }
 
         .map-links {
             display: flex;
-            gap: 15px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 25px;
+            align-items: center;
         }
 
         .map-link {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #5a6b4a;
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
-            border-radius: 2px;
-            font-weight: 400;
-            transition: background 0.3s ease;
         }
 
         .map-link:hover {
-            background: #4a5a3a;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .map-link img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
 
         .rsvp-form {
@@ -412,7 +453,7 @@
 <body>
     <nav class="sticky-nav">
         <div class="sticky-nav-content">
-            <div class="sticky-title">Agus & Rama</div>
+            <div class="sticky-title" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Agus & Rama</div>
             <div class="nav-links">
                 <a href="#detalles">Detalles</a>
                 <a href="#dresscode">Dress Code</a>
@@ -509,8 +550,12 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="map-links">
-                    <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link">Abrir en Google Maps</a>
-                    <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link">Abrir en Waze</a>
+                    <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
+                        <img src="https://cdn.cdnlogo.com/logos/g/80/google-maps.svg" alt="Google Maps">
+                    </a>
+                    <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
+                        <img src="https://cdn.cdnlogo.com/logos/w/60/waze.svg" alt="Waze">
+                    </a>
                 </div>
                 <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
             </div>
