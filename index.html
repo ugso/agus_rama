@@ -402,6 +402,49 @@
             background: #4a5a3a;
         }
 
+        .hotels-list {
+            margin-top: 30px;
+        }
+
+        .hotel-item {
+            background: white;
+            padding: 20px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hotel-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hotel-name {
+            font-size: 1.2em;
+            color: #5a6b4a;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .hotel-rating {
+            color: #f59e0b;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .hotel-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: #5a6b4a;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: opacity 0.3s ease;
+        }
+
+        .hotel-link:hover {
+            opacity: 0.7;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 60px;
@@ -506,6 +549,7 @@
 
             <div class="section" id="detalles">
                 <div class="section-paw top-right">🐾</div>
+                <h2>Información General</h2>
                 <div class="details-grid">
                     <div class="detail-item">
                         <div class="detail-label">Fecha</div>
@@ -551,10 +595,21 @@
                 </div>
                 <div class="map-links">
                     <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
-                        <img src="https://cdn.cdnlogo.com/logos/g/80/google-maps.svg" alt="Google Maps">
+                        <svg viewBox="0 0 48 48" width="40" height="40">
+                            <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"/>
+                            <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"/>
+                            <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"/>
+                            <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"/>
+                            <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"/>
+                        </svg>
                     </a>
                     <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
-                        <img src="https://cdn.cdnlogo.com/logos/w/60/waze.svg" alt="Waze">
+                        <svg viewBox="0 0 120 120" width="40" height="40">
+                            <circle cx="60" cy="60" r="55" fill="#33CCFF"/>
+                            <circle cx="45" cy="50" r="8" fill="#333"/>
+                            <circle cx="75" cy="50" r="8" fill="#333"/>
+                            <path d="M 40 70 Q 60 85 80 70" stroke="#333" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        </svg>
                     </a>
                 </div>
                 <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
@@ -563,30 +618,31 @@
             <div class="section">
                 <div class="section-paw bottom-right">🐾</div>
                 <h2>Alojamiento</h2>
-                <p>Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
-            </div>
-
-            <div class="section">
-                <div class="section-paw top-left">🐾</div>
-                <h2>Faltan</h2>
-                <div class="countdown">
-                    <div class="countdown-grid">
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="days">0</div>
-                            <div class="countdown-label">Días</div>
-                        </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="hours">0</div>
-                            <div class="countdown-label">Horas</div>
-                        </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="minutes">0</div>
-                            <div class="countdown-label">Minutos</div>
-                        </div>
-                        <div class="countdown-item">
-                            <div class="countdown-number" id="seconds">0</div>
-                            <div class="countdown-label">Segundos</div>
-                        </div>
+                <p style="margin-bottom: 20px;">Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
+                
+                <div class="hotels-list">
+                    <div class="hotel-item">
+                        <div class="hotel-name">KOS Pilar Hotel</div>
+                        <div class="hotel-rating">⭐⭐⭐⭐ (4.7/5)</div>
+                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel moderno con spa, piscina al aire libre y restaurante gourmet</p>
+                        <p style="text-align: left; font-size: 0.85em; color: #5a6b4a; margin-top: 5px;">📍 5 minutos en auto</p>
+                        <a href="https://www.google.com/maps/place/Kos+Pilar+Hotel/@-34.4528,-58.8951,15z/data=!4m2!3m1!1s0x0:0x123456789" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                    </div>
+                    
+                    <div class="hotel-item">
+                        <div class="hotel-name">Wyndham Nordelta Tigre Buenos Aires</div>
+                        <div class="hotel-rating">⭐⭐⭐⭐ (4.0/5)</div>
+                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel de lujo con vistas a la bahía de Nordelta, spa y restaurantes</p>
+                        <p style="text-align: left; font-size: 0.85em; color: #5a6b4a; margin-top: 5px;">📍 15 minutos en auto</p>
+                        <a href="https://www.google.com/maps/place/Wyndham+Nordelta+Tigre+Buenos+Aires/@-34.416,-58.6397,15z/data=!4m2!3m1!1s0x0:0x123456789" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                    </div>
+                    
+                    <div class="hotel-item">
+                        <div class="hotel-name">Sheraton Pilar Hotel & Convention Center</div>
+                        <div class="hotel-rating">⭐⭐⭐⭐ (4.0/5)</div>
+                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel rodeado de jardines con piscinas, spa y centro de convenciones</p>
+                        <p style="text-align: left; font-size: 0.85em; color: #5a6b4a; margin-top: 5px;">📍 20 minutos en auto</p>
+                        <a href="https://www.google.com/maps/place/Sheraton+Pilar+Hotel+%26+Convention+Center/@-34.4581,-58.9121,15z/data=!4m2!3m1!1s0x0:0x123456789" target="_blank" class="hotel-link">Ver en Google Maps →</a>
                     </div>
                 </div>
             </div>
