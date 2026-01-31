@@ -355,6 +355,7 @@
 
         .form-group {
             margin-bottom: 25px;
+            position: relative;
         }
 
         .form-group label {
@@ -384,6 +385,53 @@
             min-height: 100px;
         }
 
+        /* Estilos para el autocompletado */
+        .autocomplete-container {
+            position: relative;
+        }
+
+        .autocomplete-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 2px 2px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .autocomplete-results.show {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+
+        .autocomplete-item:hover {
+            background: #f8f8f8;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-loading {
+            padding: 12px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+        }
+
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -400,6 +448,11 @@
 
         .submit-btn:hover {
             background: #4a5a3a;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
 
         .hotels-list {
@@ -443,6 +496,25 @@
 
         .hotel-link:hover {
             opacity: 0.7;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         @media (max-width: 768px) {
@@ -637,36 +709,76 @@
             <div class="section" id="rsvp">
                 <div class="section-paw top-right">🐾</div>
                 <h2>Confirmación de asistencia</h2>
+                <div id="alertContainer"></div>
                 <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group autocomplete-container">
+                        <label for="nombreBusqueda">Buscar tu nombre *</label>
+                        <input 
+                            type="text" 
+                            id="nombreBusqueda" 
+                            name="nombreBusqueda" 
+                            placeholder="Escribe al menos 3 letras de tu nombre"
+                            autocomplete="off"
+                            required
+                        >
+                        <div class="autocomplete-results" id="autocompleteResults"></div>
+                        <input type="hidden" id="invitadoId" name="invitadoId">
+                        <input type="hidden" id="nombreCompleto" name="nombreCompleto">
+                    </div>
+
                     <div class="form-group">
-                        <label for="nombre">Nombre completo *</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <label for="asistencia">¿Confirmas tu asistencia? *</label>
+                        <select id="asistencia" name="asistencia" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="true">Sí, asistiré</option>
+                            <option value="false">No podré asistir</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="restricciones">Restricciones alimentarias</label>
                         <select id="restricciones" name="restricciones">
                             <option value="">Ninguna</option>
-                            <option value="vegetariano">Vegetariano</option>
-                            <option value="vegano">Vegano</option>
-                            <option value="celiaco">Celíaco</option>
-                            <option value="lactosa">Intolerante a la lactosa</option>
-                            <option value="otra">Otra (especificar en comentarios)</option>
+                            <option value="Vegetariano">Vegetariano</option>
+                            <option value="Vegano">Vegano</option>
+                            <option value="Celíaco">Celíaco</option>
+                            <option value="Intolerante a la lactosa">Intolerante a la lactosa</option>
+                            <option value="Otra">Otra (especificar en comentarios)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="cancion">Pedido de canción</label>
-                        <textarea id="cancion" name="cancion" placeholder="¿Hay alguna canción que te gustaría escuchar?"></textarea>
+                        <label for="cancion">Canción infaltable</label>
+                        <input 
+                            type="text" 
+                            id="cancion" 
+                            name="cancion" 
+                            placeholder="¿Qué canción no puede faltar en la fiesta?"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comentarios">Mensaje o comentarios</label>
+                        <textarea 
+                            id="comentarios" 
+                            name="comentarios" 
+                            placeholder="Déjanos un mensaje..."
+                        ></textarea>
                     </div>
                     
-                    <button type="submit" class="submit-btn">Confirmar asistencia</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Confirmar asistencia</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
+        // ===== CONFIGURACIÓN DE SUPABASE =====
+        // IMPORTANTE: Reemplaza estos valores con los de tu proyecto
+        const SUPABASE_URL = 'https://avqsnmvoygkfjhjitunr.supabase.co'; // Ej: 'https://xxxxx.supabase.co'
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2cXNubXZveWdrZmpoaml0dW5yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4ODY5NDgsImV4cCI6MjA4NTQ2Mjk0OH0.3ro9nmqVBhfEhMH7ncXrAvSDErDwsWM7g-EM7V6uFKw';
+
+        // ===== COUNTDOWN =====
         function updateCountdown() {
             const weddingDate = new Date('2026-05-02T17:00:00').getTime();
             const now = new Date().getTime();
@@ -690,10 +802,174 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('¡Gracias por confirmar! Próximamente conectaremos este formulario a una base de datos.');
+        // ===== AUTOCOMPLETADO DE NOMBRES =====
+        const nombreInput = document.getElementById('nombreBusqueda');
+        const resultsContainer = document.getElementById('autocompleteResults');
+        const invitadoIdInput = document.getElementById('invitadoId');
+        const nombreCompletoInput = document.getElementById('nombreCompleto');
+        let debounceTimer;
+
+        nombreInput.addEventListener('input', function(e) {
+            const query = e.target.value.trim();
+            
+            // Limpiar selección previa si el usuario empieza a escribir de nuevo
+            invitadoIdInput.value = '';
+            nombreCompletoInput.value = '';
+            
+            if (query.length < 3) {
+                resultsContainer.classList.remove('show');
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            // Debounce para evitar múltiples llamadas
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                buscarInvitados(query);
+            }, 300);
         });
+
+        async function buscarInvitados(query) {
+            resultsContainer.innerHTML = '<div class="autocomplete-loading">Buscando...</div>';
+            resultsContainer.classList.add('show');
+
+            try {
+                const response = await fetch(
+                    `${SUPABASE_URL}/functions/v1/buscar-invitado?q=${encodeURIComponent(query)}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.error) {
+                    resultsContainer.innerHTML = `<div class="autocomplete-loading">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                if (!data.invitados || data.invitados.length === 0) {
+                    resultsContainer.innerHTML = '<div class="autocomplete-loading">No se encontraron resultados</div>';
+                    return;
+                }
+
+                // Mostrar resultados
+                resultsContainer.innerHTML = data.invitados.map(invitado => `
+                    <div class="autocomplete-item" data-id="${invitado.id}" data-nombre="${invitado.nombre_completo}">
+                        ${invitado.nombre_completo}
+                    </div>
+                `).join('');
+
+                // Agregar event listeners a cada item
+                document.querySelectorAll('.autocomplete-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        seleccionarInvitado(this.dataset.id, this.dataset.nombre);
+                    });
+                });
+
+            } catch (error) {
+                console.error('Error buscando invitados:', error);
+                resultsContainer.innerHTML = '<div class="autocomplete-loading">Error al buscar. Intenta de nuevo.</div>';
+            }
+        }
+
+        function seleccionarInvitado(id, nombre) {
+            invitadoIdInput.value = id;
+            nombreCompletoInput.value = nombre;
+            nombreInput.value = nombre;
+            resultsContainer.classList.remove('show');
+            resultsContainer.innerHTML = '';
+        }
+
+        // Cerrar autocompletado al hacer click fuera
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.autocomplete-container')) {
+                resultsContainer.classList.remove('show');
+            }
+        });
+
+        // ===== ENVÍO DEL FORMULARIO =====
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const alertContainer = document.getElementById('alertContainer');
+
+            // Validar que se haya seleccionado un invitado
+            if (!invitadoIdInput.value || !nombreCompletoInput.value) {
+                mostrarAlerta('Por favor, selecciona tu nombre de la lista', 'error');
+                return;
+            }
+
+            // Deshabilitar botón
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            try {
+                const formData = {
+                    invitado_id: invitadoIdInput.value,
+                    nombre_completo: nombreCompletoInput.value,
+                    confirma_asistencia: document.getElementById('asistencia').value === 'true',
+                    restriccion_alimenticia: document.getElementById('restricciones').value || null,
+                    cancion_infaltable: document.getElementById('cancion').value || null,
+                    mensaje_comentarios: document.getElementById('comentarios').value || null
+                };
+
+                const response = await fetch(
+                    `${SUPABASE_URL}/functions/v1/guardar-rsvp`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    }
+                );
+
+                const result = await response.json();
+
+                if (result.error) {
+                    mostrarAlerta(result.error, 'error');
+                } else if (result.success) {
+                    mostrarAlerta('¡Gracias por confirmar! Nos vemos en la fiesta 🎉', 'success');
+                    // Limpiar formulario
+                    document.getElementById('rsvpForm').reset();
+                    invitadoIdInput.value = '';
+                    nombreCompletoInput.value = '';
+                } else {
+                    mostrarAlerta('Hubo un error al guardar. Por favor, intenta de nuevo.', 'error');
+                }
+
+            } catch (error) {
+                console.error('Error al enviar RSVP:', error);
+                mostrarAlerta('Error de conexión. Por favor, intenta de nuevo.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmar asistencia';
+            }
+        });
+
+        function mostrarAlerta(mensaje, tipo) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alertClass = tipo === 'success' ? 'alert-success' : 'alert-error';
+            
+            alertContainer.innerHTML = `
+                <div class="alert ${alertClass}">
+                    ${mensaje}
+                </div>
+            `;
+
+            // Auto-cerrar después de 5 segundos
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+
+            // Scroll a la alerta
+            alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     </script>
 </body>
 </html>
