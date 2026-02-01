@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -277,30 +276,97 @@
             font-weight: 300;
         }
 
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        /* ===== GALERÍA CARRUSEL ===== */
+        .photo-carousel {
+            position: relative;
             margin-top: 30px;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .photo-placeholder {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%);
-            border-radius: 2px;
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #f5f5f5;
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
             color: #5a6b4a;
-            font-size: 3em;
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
         }
 
-        .photo-placeholder:hover {
-            transform: scale(1.05);
+        .carousel-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .photo-placeholder:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            width: 30px;
+            border-radius: 5px;
+        }
 
         .map-container {
             margin-top: 30px;
@@ -386,7 +452,6 @@
             min-height: 100px;
         }
 
-        /* Estilos para el autocompletado */
         .autocomplete-container {
             position: relative;
         }
@@ -553,13 +618,22 @@
                 padding: 30px 20px;
             }
 
-            .photo-gallery {
-                grid-template-columns: 1fr;
+            .carousel-container {
+                height: 350px;
             }
 
-            .photo-placeholder:nth-child(1) {
-                grid-column: span 1;
-                grid-row: span 1;
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .carousel-nav.prev {
+                left: 10px;
+            }
+
+            .carousel-nav.next {
+                right: 10px;
             }
 
             .map-links {
@@ -653,12 +727,17 @@
             <div class="section" id="fotos">
                 <div class="section-paw top-left">🐾</div>
                 <h2>Fotos</h2>
-                <div class="photo-gallery">
-                    <div class="photo-placeholder">📷</div>
-                    <div class="photo-placeholder">📷</div>
-                    <div class="photo-placeholder">📷</div>
-                    <div class="photo-placeholder">📷</div>
-                    <div class="photo-placeholder">📷</div>
+                <div class="photo-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carouselSlides">
+                            <!-- Las imágenes se cargarán aquí via JavaScript -->
+                        </div>
+                        <button class="carousel-nav prev" onclick="moveSlide(-1)">&#10094;</button>
+                        <button class="carousel-nav next" onclick="moveSlide(1)">&#10095;</button>
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <!-- Los indicadores se generarán aquí via JavaScript -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -679,7 +758,7 @@
                         </svg>
                     </a>
                     <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
-                        <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze" style="width: 40px; height: 40px; object-fit: contain;">
+                        <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze">
                     </a>
                 </div>
                 <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
@@ -777,9 +856,83 @@
 
     <script>
         // ===== CONFIGURACIÓN DE SUPABASE =====
-        // IMPORTANTE: Reemplaza estos valores con los de tu proyecto
         const SUPABASE_URL = 'https://avqsnmvoygkfjhjitunr.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2cXNubXZveWdrZmpoaml0dW5yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4ODY5NDgsImV4cCI6MjA4NTQ2Mjk0OH0.3ro9nmqVBhfEhMH7ncXrAvSDErDwsWM7g-EM7V6uFKw';
+
+        // ===== GALERÍA DE FOTOS =====
+        // IMPORTANTE: Reemplaza estas rutas con las rutas reales de tus fotos
+        const photos = [
+            'gallery/foto_1.jpg',
+            'gallery/foto_2.jpg',
+            'gallery/foto_3.jpg',
+            'gallery/foto_4.jpg',
+            'gallery/foto_5.jpg',
+            'gallery/foto_6.jpg',
+            'gallery/foto_7.jpg',
+            'gallery/foto_8.jpg',
+            'gallery/foto_9.jpg'
+        ];
+
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        // Inicializar carrusel
+        function initCarousel() {
+            const slidesContainer = document.getElementById('carouselSlides');
+            const indicatorsContainer = document.getElementById('carouselIndicators');
+            
+            // Crear slides
+            photos.forEach((photo, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `<img src="${photo}" alt="Foto ${index + 1}" loading="lazy">`;
+                slidesContainer.appendChild(slide);
+                
+                // Crear indicador
+                const indicator = document.createElement('div');
+                indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+                indicator.onclick = () => goToSlide(index);
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // Iniciar auto-slide
+            startAutoSlide();
+        }
+
+        function moveSlide(direction) {
+            const totalSlides = photos.length;
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function updateCarousel() {
+            const slidesContainer = document.getElementById('carouselSlides');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                moveSlide(1);
+            }, 4000); // Cambiar cada 4 segundos
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
 
         // ===== COUNTDOWN =====
         function updateCountdown() {
@@ -815,7 +968,6 @@
         nombreInput.addEventListener('input', function(e) {
             const query = e.target.value.trim();
             
-            // Limpiar selección previa si el usuario empieza a escribir de nuevo
             invitadoIdInput.value = '';
             nombreCompletoInput.value = '';
             
@@ -825,7 +977,6 @@
                 return;
             }
 
-            // Debounce para evitar múltiples llamadas
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
                 buscarInvitados(query);
@@ -858,14 +1009,12 @@
                     return;
                 }
 
-                // Mostrar resultados
                 resultsContainer.innerHTML = data.invitados.map(invitado => `
                     <div class="autocomplete-item" data-id="${invitado.id}" data-nombre="${invitado.nombre_completo}">
                         ${invitado.nombre_completo}
                     </div>
                 `).join('');
 
-                // Agregar event listeners a cada item
                 document.querySelectorAll('.autocomplete-item').forEach(item => {
                     item.addEventListener('click', function() {
                         seleccionarInvitado(this.dataset.id, this.dataset.nombre);
@@ -886,7 +1035,6 @@
             resultsContainer.innerHTML = '';
         }
 
-        // Cerrar autocompletado al hacer click fuera
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.autocomplete-container')) {
                 resultsContainer.classList.remove('show');
@@ -898,15 +1046,12 @@
             e.preventDefault();
 
             const submitBtn = document.getElementById('submitBtn');
-            const alertContainer = document.getElementById('alertContainer');
 
-            // Validar que se haya seleccionado un invitado
             if (!invitadoIdInput.value || !nombreCompletoInput.value) {
                 mostrarAlerta('Por favor, selecciona tu nombre de la lista', 'error');
                 return;
             }
 
-            // Deshabilitar botón
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
 
@@ -938,7 +1083,6 @@
                     mostrarAlerta(result.error, 'error');
                 } else if (result.success) {
                     mostrarAlerta('¡Gracias por confirmar! Nos vemos en la fiesta 🎉', 'success');
-                    // Limpiar formulario
                     document.getElementById('rsvpForm').reset();
                     invitadoIdInput.value = '';
                     nombreCompletoInput.value = '';
@@ -965,14 +1109,15 @@
                 </div>
             `;
 
-            // Auto-cerrar después de 5 segundos
             setTimeout(() => {
                 alertContainer.innerHTML = '';
             }, 5000);
 
-            // Scroll a la alerta
             alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+
+        // Inicializar carrusel cuando cargue la página
+        window.addEventListener('load', initCarousel);
     </script>
 </body>
 </html>
