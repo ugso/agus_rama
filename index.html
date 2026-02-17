@@ -76,6 +76,74 @@
             opacity: 0.7;
         }
 
+        /* Hamburger menu (mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            background: rgba(15, 28, 46, 0.98);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            font-weight: 300;
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: background 0.2s ease;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255,255,255,0.07);
+        }
+
         .container {
             max-width: 900px;
             width: 100%;
@@ -226,8 +294,21 @@
             font-weight: 300;
         }
 
+        /* Scroll animations */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .details-grid {
             display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin: 30px 0;
         }
@@ -619,6 +700,66 @@
             border: 1px solid #f5c6cb;
         }
 
+        /* Form field validation */
+        .form-group input.field-error,
+        .form-group select.field-error,
+        .form-group textarea.field-error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.15);
+            outline: none;
+        }
+
+        .field-error-msg {
+            color: #e53e3e;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .field-error-msg.show {
+            display: block;
+        }
+
+        /* Countdown heading */
+        .countdown-heading {
+            font-family: 'Cormorant Garamond', serif;
+            color: #0f1c2e;
+            font-size: 2.2em;
+            font-weight: 400;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .countdown-subheading {
+            text-align: center;
+            font-size: 0.85em;
+            color: #999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .countdown-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            color: rgba(15,28,46,0.2);
+            font-size: 0.7em;
+            letter-spacing: 3px;
+        }
+
+        .countdown-divider::before,
+        .countdown-divider::after {
+            content: '';
+            flex: 1;
+            max-width: 80px;
+            height: 1px;
+            background: rgba(15,28,46,0.15);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 60px;
@@ -626,6 +767,7 @@
 
             .sticky-nav {
                 padding: 10px 15px;
+                position: relative;
             }
 
             .sticky-title {
@@ -636,18 +778,26 @@
                 display: none;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             .names {
                 font-size: 2.5em;
             }
-            
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
             .countdown-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .header {
                 padding: 40px 20px;
             }
-            
+
             .content {
                 padding: 30px 20px;
             }
@@ -687,6 +837,18 @@
                 <a href="#ubicacion">Ubicación</a>
                 <a href="#rsvp">RSVP</a>
             </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#detalles" class="mobile-nav-link">Detalles</a>
+            <a href="#dresscode" class="mobile-nav-link">Dress Code</a>
+            <a href="#fotos" class="mobile-nav-link">Fotos</a>
+            <a href="#ubicacion" class="mobile-nav-link">Ubicación</a>
+            <a href="#rsvp" class="mobile-nav-link">RSVP</a>
         </div>
     </nav>
 
@@ -715,7 +877,9 @@
                 <div class="section-paw top-left">🐾</div>
                 <div class="section-star top-left-star">✨</div>
                 <div class="section-star top-right-star">⭐</div>
-                <h2>Faltan</h2>
+                <div class="countdown-heading">Faltan</div>
+                <div class="countdown-subheading">para el gran día</div>
+                <div class="countdown-divider">✦</div>
                 <div class="countdown">
                     <div class="countdown-grid">
                         <div class="countdown-item">
@@ -860,6 +1024,7 @@
                         <div class="autocomplete-results" id="autocompleteResults"></div>
                         <input type="hidden" id="invitadoId" name="invitadoId">
                         <input type="hidden" id="nombreCompleto" name="nombreCompleto">
+                        <div class="field-error-msg" id="nombreError">Por favor, seleccioná tu nombre de la lista</div>
                     </div>
 
                     <div class="form-group">
@@ -869,6 +1034,7 @@
                             <option value="true">Sí, asistiré</option>
                             <option value="false">No podré asistir</option>
                         </select>
+                        <div class="field-error-msg" id="asistenciaError">Por favor, indicá si vas a asistir</div>
                     </div>
                     
                     <div class="form-group">
@@ -1100,10 +1266,22 @@
 
             const submitBtn = document.getElementById('submitBtn');
 
+            let hasError = false;
+
             if (!invitadoIdInput.value || !nombreCompletoInput.value) {
-                mostrarAlerta('Por favor, selecciona tu nombre de la lista', 'error');
-                return;
+                const nombreInput2 = document.getElementById('nombreBusqueda');
+                nombreInput2.classList.add('field-error');
+                document.getElementById('nombreError').classList.add('show');
+                hasError = true;
             }
+
+            if (!document.getElementById('asistencia').value) {
+                document.getElementById('asistencia').classList.add('field-error');
+                document.getElementById('asistenciaError').classList.add('show');
+                hasError = true;
+            }
+
+            if (hasError) return;
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
@@ -1170,6 +1348,69 @@
         }
 
         window.addEventListener('load', initCarousel);
+
+        // ===== HAMBURGER MENU =====
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            const isOpen = mobileMenu.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open', isOpen);
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburgerBtn.classList.remove('open');
+                hamburgerBtn.setAttribute('aria-expanded', false);
+            });
+        });
+
+        // ===== TOUCH/SWIPE SUPPORT FOR CAROUSEL =====
+        const carouselContainer = document.querySelector('.carousel-container');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) {
+                moveSlide(diff > 0 ? 1 : -1);
+            }
+        }, { passive: true });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===== IMPROVED FORM VALIDATION =====
+        function clearFieldError(inputEl, errorEl) {
+            inputEl.classList.remove('field-error');
+            errorEl.classList.remove('show');
+        }
+
+        document.getElementById('nombreBusqueda').addEventListener('input', function() {
+            clearFieldError(this, document.getElementById('nombreError'));
+        });
+
+        document.getElementById('asistencia').addEventListener('change', function() {
+            clearFieldError(this, document.getElementById('asistenciaError'));
+        });
     </script>
 </body>
 </html>
