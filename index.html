@@ -311,18 +311,14 @@
         .details-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
+            gap: 0 24px;
             margin: 35px 0 20px;
-            background: rgba(200, 160, 160, 0.2);
-            border: 1px solid rgba(200, 160, 160, 0.25);
-            border-radius: 2px;
-            overflow: hidden;
         }
 
         .detail-item {
             text-align: center;
-            padding: 32px 16px;
-            background: #fdfaf6;
+            padding: 22px 8px 10px;
+            background: transparent;
             position: relative;
             border-top: 2px solid #e8cece;
         }
@@ -831,6 +827,7 @@
 
             .details-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px 24px;
             }
 
             .countdown-grid {
