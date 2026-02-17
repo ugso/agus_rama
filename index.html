@@ -179,9 +179,9 @@
         /* Estrellas en el header */
         .star {
             position: absolute;
-            opacity: 0.4;
+            opacity: 0.5;
             font-size: 14px;
-            color: white;
+            color: #c8d4e8;
             animation: twinkle 3s ease-in-out infinite;
         }
 
@@ -262,9 +262,9 @@
         /* Estrellas en las secciones */
         .section-star {
             position: absolute;
-            opacity: 0.15;
+            opacity: 0.45;
             font-size: 18px;
-            color: #0f1c2e;
+            color: #9aaabf;
             animation: twinkle 4s ease-in-out infinite;
         }
 
@@ -308,32 +308,44 @@
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 30px 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin: 35px 0 20px;
+            background: rgba(15, 28, 46, 0.1);
+            border: 1px solid rgba(15, 28, 46, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
         }
 
         .detail-item {
             text-align: center;
-            padding: 25px;
-            background: #faf9f7;
-            border-radius: 2px;
+            padding: 32px 16px;
+            background: white;
             position: relative;
         }
 
+        .detail-icon {
+            display: block;
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            opacity: 0.75;
+        }
+
         .detail-label {
-            font-size: 0.85em;
-            color: #0f1c2e;
+            font-size: 0.72em;
+            color: #aaa;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .detail-value {
-            font-size: 1.3em;
-            color: #333;
-            font-weight: 300;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35em;
+            color: #0f1c2e;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .countdown {
@@ -367,27 +379,6 @@
             font-size: 0.85em;
             color: #777;
             margin-top: 5px;
-            font-weight: 300;
-        }
-
-        .dress-code {
-            background: #0f1c2e;
-            color: white;
-            padding: 30px;
-            border-radius: 2px;
-            text-align: center;
-        }
-
-        .dress-code h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8em;
-            font-weight: 400;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .dress-code p {
-            color: rgba(255,255,255,0.9);
             font-weight: 300;
         }
 
@@ -731,33 +722,60 @@
             margin-bottom: 5px;
         }
 
-        .countdown-subheading {
+        /* ===== RSVP CONFIRMED STATE ===== */
+        .rsvp-confirmed {
+            display: none;
             text-align: center;
-            font-size: 0.85em;
+            padding: 60px 40px;
+            background: #faf9f7;
+            border-radius: 2px;
+            margin-top: 30px;
+        }
+
+        .confirmed-icon {
+            display: block;
+            font-size: 2.2em;
+            color: #9aaabf;
+            margin-bottom: 22px;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .rsvp-confirmed h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            color: #0f1c2e;
+            font-weight: 400;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .rsvp-confirmed p {
             color: #999;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            font-size: 0.9em;
         }
 
-        .countdown-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            color: rgba(15,28,46,0.2);
-            font-size: 0.7em;
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 35px 20px 20px;
+            max-width: 900px;
+            margin: 0 auto 10px;
+        }
+
+        .footer-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: #0f1c2e;
             letter-spacing: 3px;
+            font-weight: 300;
+            margin-bottom: 8px;
         }
 
-        .countdown-divider::before,
-        .countdown-divider::after {
-            content: '';
-            flex: 1;
-            max-width: 80px;
-            height: 1px;
-            background: rgba(15,28,46,0.15);
+        .footer-date {
+            font-size: 0.78em;
+            color: #bbb;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
@@ -784,10 +802,11 @@
 
             .names {
                 font-size: 2.5em;
+                letter-spacing: 2px;
             }
 
             .details-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .countdown-grid {
@@ -832,7 +851,6 @@
             <div class="sticky-title" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Agus & Rama</div>
             <div class="nav-links">
                 <a href="#detalles">Detalles</a>
-                <a href="#dresscode">Dress Code</a>
                 <a href="#fotos">Fotos</a>
                 <a href="#ubicacion">Ubicación</a>
                 <a href="#rsvp">RSVP</a>
@@ -845,7 +863,6 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#detalles" class="mobile-nav-link">Detalles</a>
-            <a href="#dresscode" class="mobile-nav-link">Dress Code</a>
             <a href="#fotos" class="mobile-nav-link">Fotos</a>
             <a href="#ubicacion" class="mobile-nav-link">Ubicación</a>
             <a href="#rsvp" class="mobile-nav-link">RSVP</a>
@@ -860,12 +877,12 @@
             <div class="paw">🐾</div>
             <div class="paw">🐾</div>
             <div class="paw">🐾</div>
-            <div class="star">✨</div>
-            <div class="star">⭐</div>
-            <div class="star">✨</div>
-            <div class="star">⭐</div>
-            <div class="star">✨</div>
-            <div class="star">⭐</div>
+            <div class="star">✦</div>
+            <div class="star">✦</div>
+            <div class="star">✦</div>
+            <div class="star">✦</div>
+            <div class="star">✦</div>
+            <div class="star">✦</div>
             <div class="names">
                 Agus <span class="ampersand">&</span> Rama
             </div>
@@ -875,11 +892,9 @@
         <div class="content">
             <div class="section">
                 <div class="section-paw top-left">🐾</div>
-                <div class="section-star top-left-star">✨</div>
-                <div class="section-star top-right-star">⭐</div>
+                <div class="section-star top-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
                 <div class="countdown-heading">Faltan</div>
-                <div class="countdown-subheading">para el gran día</div>
-                <div class="countdown-divider">✦</div>
                 <div class="countdown">
                     <div class="countdown-grid">
                         <div class="countdown-item">
@@ -904,40 +919,37 @@
 
             <div class="section" id="detalles">
                 <div class="section-paw top-right">🐾</div>
-                <div class="section-star bottom-left-star">✨</div>
-                <div class="section-star top-right-star">⭐</div>
+                <div class="section-star bottom-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
                 <h2>Información General</h2>
                 <div class="details-grid">
                     <div class="detail-item">
+                        <span class="detail-icon">📅</span>
                         <div class="detail-label">Fecha</div>
-                        <div class="detail-value">2 de Mayo, 2026</div>
+                        <div class="detail-value">2 de Mayo<br>2026</div>
                     </div>
                     <div class="detail-item">
+                        <span class="detail-icon">🕐</span>
                         <div class="detail-label">Hora</div>
                         <div class="detail-value">17:00 hs</div>
                     </div>
                     <div class="detail-item">
+                        <span class="detail-icon">📍</span>
                         <div class="detail-label">Lugar</div>
                         <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
                     </div>
-                </div>
-            </div>
-
-            <div class="section" id="dresscode">
-                <div class="section-paw bottom-right">🐾</div>
-                <div class="section-star top-left-star">⭐</div>
-                <div class="section-star bottom-left-star">✨</div>
-                <h2>Dress Code</h2>
-                <div class="dress-code">
-                    <h3>Formal</h3>
-                    <p>Te pedimos que vengas elegante para celebrar con nosotros</p>
+                    <div class="detail-item">
+                        <span class="detail-icon">🤵</span>
+                        <div class="detail-label">Dress Code</div>
+                        <div class="detail-value">Formal</div>
+                    </div>
                 </div>
             </div>
 
             <div class="section" id="fotos">
                 <div class="section-paw top-left">🐾</div>
-                <div class="section-star top-right-star">✨</div>
-                <div class="section-star bottom-left-star">⭐</div>
+                <div class="section-star top-right-star">✦</div>
+                <div class="section-star bottom-left-star">✦</div>
                 <h2>Fotos</h2>
                 <div class="photo-carousel">
                     <div class="carousel-container">
@@ -955,8 +967,8 @@
 
             <div class="section" id="ubicacion">
                 <div class="section-paw top-right">🐾</div>
-                <div class="section-star top-left-star">⭐</div>
-                <div class="section-star top-right-star">✨</div>
+                <div class="section-star top-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
                 <h2>¿Cómo llegar?</h2>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
@@ -980,8 +992,8 @@
 
             <div class="section">
                 <div class="section-paw bottom-right">🐾</div>
-                <div class="section-star top-left-star">✨</div>
-                <div class="section-star top-right-star">⭐</div>
+                <div class="section-star top-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
                 <h2>Alojamiento</h2>
                 <p style="margin-bottom: 20px;">Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
                 
@@ -1006,9 +1018,14 @@
 
             <div class="section" id="rsvp">
                 <div class="section-paw top-right">🐾</div>
-                <div class="section-star bottom-left-star">⭐</div>
-                <div class="section-star top-right-star">✨</div>
+                <div class="section-star bottom-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
                 <h2>Confirmación de asistencia</h2>
+                <div class="rsvp-confirmed" id="rsvpConfirmed">
+                    <span class="confirmed-icon">✦</span>
+                    <h3>¡Gracias por confirmar!</h3>
+                    <p>Tu respuesta fue registrada.<br>Nos vemos en la fiesta.</p>
+                </div>
                 <div id="alertContainer"></div>
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group autocomplete-container">
@@ -1073,6 +1090,11 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-names">Agus &amp; Rama</div>
+        <div class="footer-date">02 · 05 · 2026</div>
+    </footer>
 
     <script>
         // ===== CONFIGURACIÓN DE SUPABASE =====
@@ -1313,10 +1335,10 @@
                 if (result.error) {
                     mostrarAlerta(result.error, 'error');
                 } else if (result.success) {
-                    mostrarAlerta('¡Gracias por confirmar! Nos vemos en la fiesta 🎉', 'success');
-                    document.getElementById('rsvpForm').reset();
-                    invitadoIdInput.value = '';
-                    nombreCompletoInput.value = '';
+                    document.getElementById('rsvpForm').style.display = 'none';
+                    document.getElementById('alertContainer').style.display = 'none';
+                    document.getElementById('rsvpConfirmed').style.display = 'block';
+                    localStorage.setItem('rsvp_confirmed', 'true');
                 } else {
                     mostrarAlerta('Hubo un error al guardar. Por favor, intenta de nuevo.', 'error');
                 }
@@ -1348,6 +1370,12 @@
         }
 
         window.addEventListener('load', initCarousel);
+
+        // ===== RSVP CONFIRMED STATE (persistent) =====
+        if (localStorage.getItem('rsvp_confirmed') === 'true') {
+            document.getElementById('rsvpForm').style.display = 'none';
+            document.getElementById('rsvpConfirmed').style.display = 'block';
+        }
 
         // ===== HAMBURGER MENU =====
         const hamburgerBtn = document.getElementById('hamburgerBtn');
