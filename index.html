@@ -308,6 +308,31 @@
             transform: translateY(0);
         }
 
+        /* ===== SPLIT SECTION (Detalles + Ubicación) ===== */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 50px;
+        }
+
+        .split-col {
+            position: relative;
+        }
+
+        /* In split context, detail grid becomes 2×2 */
+        .split-col .details-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 20px;
+        }
+
+        .split-col .map-container {
+            margin-top: 20px;
+        }
+
+        .split-col .map-links {
+            margin-top: 18px;
+        }
+
         .details-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -798,6 +823,41 @@
             text-transform: uppercase;
         }
 
+        /* ===== CONSTELLATIONS ===== */
+        .constellation {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        .constellation line {
+            stroke: #c8d4e8;
+            stroke-width: 1;
+        }
+        .constellation circle {
+            fill: #c8d4e8;
+        }
+        .section-constellation {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.12;
+        }
+        .section-constellation line {
+            stroke: #9aaabf;
+            stroke-width: 0.8;
+        }
+        .section-constellation circle {
+            fill: #9aaabf;
+        }
+
+        /* Split section vertical divider */
+        .split-section .split-col:first-child {
+            padding-right: 25px;
+            border-right: 1px solid rgba(180, 140, 140, 0.18);
+        }
+        .split-section .split-col:last-child {
+            padding-left: 25px;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 60px;
@@ -828,6 +888,15 @@
             .details-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px 24px;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 40px 0;
+            }
+
+            .split-col .details-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .countdown-grid {
@@ -863,6 +932,16 @@
             .map-links {
                 flex-direction: column;
             }
+
+            .split-section .split-col:first-child {
+                padding-right: 0;
+                border-right: none;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(180, 140, 140, 0.18);
+            }
+            .split-section .split-col:last-child {
+                padding-left: 0;
+            }
         }
     </style>
 </head>
@@ -872,9 +951,9 @@
             <div class="sticky-title" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Agus & Rama</div>
             <div class="nav-links">
                 <a href="#detalles">Detalles</a>
-                <a href="#fotos">Fotos</a>
-                <a href="#ubicacion">Ubicación</a>
                 <a href="#rsvp">RSVP</a>
+                <a href="#alojamiento">Alojamiento</a>
+                <a href="#fotos">Fotos</a>
             </div>
             <button class="hamburger" id="hamburgerBtn" aria-label="Menú" aria-expanded="false">
                 <span></span>
@@ -884,9 +963,9 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#detalles" class="mobile-nav-link">Detalles</a>
-            <a href="#fotos" class="mobile-nav-link">Fotos</a>
-            <a href="#ubicacion" class="mobile-nav-link">Ubicación</a>
             <a href="#rsvp" class="mobile-nav-link">RSVP</a>
+            <a href="#alojamiento" class="mobile-nav-link">Alojamiento</a>
+            <a href="#fotos" class="mobile-nav-link">Fotos</a>
         </div>
     </nav>
 
@@ -904,6 +983,35 @@
             <div class="star">✦</div>
             <div class="star">✦</div>
             <div class="star">✦</div>
+            <!-- Cassiopeia (W shape) — left side -->
+            <svg class="constellation" style="bottom: 18%; left: 6%;" width="88" height="52" viewBox="0 0 90 55">
+                <line x1="5" y1="44" x2="26" y2="8"/>
+                <line x1="26" y1="8" x2="46" y2="38"/>
+                <line x1="46" y1="38" x2="68" y2="6"/>
+                <line x1="68" y1="6" x2="86" y2="30"/>
+                <circle cx="5" cy="44" r="2.5"/>
+                <circle cx="26" cy="8" r="2"/>
+                <circle cx="46" cy="38" r="2.5"/>
+                <circle cx="68" cy="6" r="2"/>
+                <circle cx="86" cy="30" r="2"/>
+            </svg>
+            <!-- Orion (7 stars) — right side -->
+            <svg class="constellation" style="top: 10%; right: 6%;" width="68" height="88" viewBox="0 0 72 92">
+                <line x1="10" y1="12" x2="60" y2="18"/>
+                <line x1="10" y1="12" x2="16" y2="44"/>
+                <line x1="60" y1="18" x2="54" y2="44"/>
+                <line x1="16" y1="44" x2="33" y2="47"/>
+                <line x1="33" y1="47" x2="54" y2="44"/>
+                <line x1="16" y1="44" x2="12" y2="80"/>
+                <line x1="54" y1="44" x2="60" y2="80"/>
+                <circle cx="10" cy="12" r="2.5"/>
+                <circle cx="60" cy="18" r="2"/>
+                <circle cx="16" cy="44" r="1.8"/>
+                <circle cx="33" cy="47" r="2.2"/>
+                <circle cx="54" cy="44" r="1.8"/>
+                <circle cx="12" cy="80" r="2"/>
+                <circle cx="60" cy="80" r="2.5"/>
+            </svg>
             <div class="names">
                 Agus <span class="ampersand">&</span> Rama
             </div>
@@ -911,6 +1019,7 @@
         </div>
 
         <div class="content">
+            <!-- 1. Countdown -->
             <div class="section">
                 <div class="section-paw top-left">🐾</div>
                 <div class="section-star top-left-star">✦</div>
@@ -938,109 +1047,99 @@
                 </div>
             </div>
 
-            <div class="section" id="detalles">
+            <!-- 2. Split: Información General (left) + ¿Cómo llegar? (right) -->
+            <div class="section split-section" id="detalles">
                 <div class="section-paw top-right">🐾</div>
                 <div class="section-star bottom-left-star">✦</div>
-                <div class="section-star top-right-star">✦</div>
-                <h2>Información General</h2>
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <span class="detail-icon">📅</span>
-                        <div class="detail-label">Fecha</div>
-                        <div class="detail-value">2 de Mayo<br>2026</div>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">🕐</span>
-                        <div class="detail-label">Hora</div>
-                        <div class="detail-value">17:00 hs</div>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">📍</span>
-                        <div class="detail-label">Lugar</div>
-                        <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">🤵</span>
-                        <div class="detail-label">Dress Code</div>
-                        <div class="detail-value">Formal</div>
-                    </div>
-                </div>
-            </div>
+                <!-- Southern Cross — top right ornament -->
+                <svg class="section-constellation" style="top: 0; right: 70px;" width="52" height="62" viewBox="0 0 60 70">
+                    <line x1="30" y1="5" x2="30" y2="65"/>
+                    <line x1="4" y1="32" x2="56" y2="32"/>
+                    <circle cx="30" cy="5" r="2.5"/>
+                    <circle cx="30" cy="65" r="1.8"/>
+                    <circle cx="4" cy="32" r="1.8"/>
+                    <circle cx="56" cy="32" r="2.2"/>
+                    <circle cx="44" cy="18" r="1.2"/>
+                </svg>
 
-            <div class="section" id="fotos">
-                <div class="section-paw top-left">🐾</div>
-                <div class="section-star top-right-star">✦</div>
-                <div class="section-star bottom-left-star">✦</div>
-                <h2>Fotos</h2>
-                <div class="photo-carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-slides" id="carouselSlides">
-                            <!-- Las imágenes se cargarán aquí via JavaScript -->
+                <!-- Left column: Información General -->
+                <div class="split-col">
+                    <h2>Información General</h2>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <div class="detail-label">Fecha</div>
+                            <div class="detail-value">2 de Mayo<br>2026</div>
                         </div>
-                        <button class="carousel-nav prev" onclick="moveSlide(-1)">&#10094;</button>
-                        <button class="carousel-nav next" onclick="moveSlide(1)">&#10095;</button>
-                        <div class="carousel-indicators" id="carouselIndicators">
-                            <!-- Los indicadores se generarán aquí via JavaScript -->
+                        <div class="detail-item">
+                            <span class="detail-icon">🕐</span>
+                            <div class="detail-label">Hora</div>
+                            <div class="detail-value">17:00 hs</div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <div class="detail-label">Lugar</div>
+                            <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🤵</span>
+                            <div class="detail-label">Dress Code</div>
+                            <div class="detail-value">Formal</div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section" id="ubicacion">
-                <div class="section-paw top-right">🐾</div>
-                <div class="section-star top-left-star">✦</div>
-                <div class="section-star top-right-star">✦</div>
-                <h2>¿Cómo llegar?</h2>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-                <div class="map-links">
-                    <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
-                        <svg viewBox="0 0 48 48" width="40" height="40">
-                            <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"/>
-                            <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"/>
-                            <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"/>
-                            <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"/>
-                            <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"/>
-                        </svg>
-                    </a>
-                    <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
-                        <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze">
-                    </a>
-                </div>
-                <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
-            </div>
-
-            <div class="section">
-                <div class="section-paw bottom-right">🐾</div>
-                <div class="section-star top-left-star">✦</div>
-                <div class="section-star top-right-star">✦</div>
-                <h2>Alojamiento</h2>
-                <p style="margin-bottom: 20px;">Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
-                
-                <div class="hotels-list">
-                    <div class="hotel-item">
-                        <div class="hotel-name">KOS Pilar Hotel</div>
-                        <div class="hotel-rating">⭐⭐⭐⭐ (4.7/5)</div>
-                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel moderno con spa, piscina al aire libre y restaurante gourmet</p>
-                        <p style="text-align: left; font-size: 0.85em; color: #0f1c2e; margin-top: 5px;">📍 9 minutos en auto</p>
-                        <a href="https://www.google.com/maps/place/Kos+Pilar+Hotel/@-34.4355466,-58.8317723,17z/data=!3m1!4b1!4m9!3m8!1s0x95bc9deb36d471db:0x767b800d865d4633!5m2!4m1!1i2!8m2!3d-34.4355511!4d-58.8291974!16s%2Fg%2F11hd9d4gbs?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                <!-- Right column: ¿Cómo llegar? -->
+                <div class="split-col" id="ubicacion">
+                    <h2>¿Cómo llegar?</h2>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
                     </div>
-                    
-                    <div class="hotel-item">
-                        <div class="hotel-name">Sheraton Pilar Hotel & Convention Center</div>
-                        <div class="hotel-rating">⭐⭐⭐⭐ (4.0/5)</div>
-                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel rodeado de jardines con piscinas, spa y centro de convenciones</p>
-                        <p style="text-align: left; font-size: 0.85em; color: #0f1c2e; margin-top: 5px;">📍 13 minutos en auto</p>
-                        <a href="https://www.google.com/maps/place/Sheraton+Pilar+Hotel+%26+Convention+Center/@-34.4449015,-58.8479375,13z/data=!4m9!3m8!1s0x95bc9c50482ee15f:0x24a0e317272e8528!5m2!4m1!1i2!8m2!3d-34.4442425!4d-58.8650331!16s%2Fg%2F1tgz6nmg?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                    <div class="map-links">
+                        <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
+                            <svg viewBox="0 0 48 48" width="40" height="40">
+                                <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"/>
+                                <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"/>
+                                <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"/>
+                                <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"/>
+                                <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"/>
+                            </svg>
+                        </a>
+                        <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
+                            <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze">
+                        </a>
                     </div>
+                    <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
                 </div>
             </div>
 
+            <!-- 3. RSVP -->
             <div class="section" id="rsvp">
                 <div class="section-paw top-right">🐾</div>
                 <div class="section-star bottom-left-star">✦</div>
                 <div class="section-star top-right-star">✦</div>
+                <!-- Libra (scales) — bottom-left ornament -->
+                <svg class="section-constellation" style="bottom: 8px; left: 45px;" width="68" height="68" viewBox="0 0 75 75">
+                    <line x1="8" y1="58" x2="34" y2="30"/>
+                    <line x1="34" y1="30" x2="68" y2="22"/>
+                    <line x1="34" y1="30" x2="36" y2="68"/>
+                    <circle cx="8" cy="58" r="2.5"/>
+                    <circle cx="34" cy="30" r="1.8"/>
+                    <circle cx="68" cy="22" r="2.5"/>
+                    <circle cx="36" cy="68" r="2"/>
+                </svg>
+                <!-- Cancer (crab) — bottom-right ornament -->
+                <svg class="section-constellation" style="bottom: 8px; right: 45px;" width="65" height="68" viewBox="0 0 70 75">
+                    <line x1="10" y1="10" x2="35" y2="38"/>
+                    <line x1="60" y1="12" x2="35" y2="38"/>
+                    <line x1="35" y1="38" x2="14" y2="65"/>
+                    <line x1="35" y1="38" x2="56" y2="63"/>
+                    <circle cx="10" cy="10" r="2"/>
+                    <circle cx="60" cy="12" r="2.5"/>
+                    <circle cx="35" cy="38" r="2"/>
+                    <circle cx="14" cy="65" r="2.5"/>
+                    <circle cx="56" cy="63" r="2"/>
+                </svg>
                 <h2>Confirmación de asistencia</h2>
                 <div class="rsvp-confirmed" id="rsvpConfirmed">
                     <span class="confirmed-icon">✦</span>
@@ -1051,10 +1150,10 @@
                 <form class="rsvp-form" id="rsvpForm">
                     <div class="form-group autocomplete-container">
                         <label for="nombreBusqueda">Buscar tu nombre *</label>
-                        <input 
-                            type="text" 
-                            id="nombreBusqueda" 
-                            name="nombreBusqueda" 
+                        <input
+                            type="text"
+                            id="nombreBusqueda"
+                            name="nombreBusqueda"
                             placeholder="Escribe al menos 3 letras de tu nombre"
                             autocomplete="off"
                             required
@@ -1074,7 +1173,7 @@
                         </select>
                         <div class="field-error-msg" id="asistenciaError">Por favor, indicá si vas a asistir</div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="restricciones">Restricciones alimentarias</label>
                         <select id="restricciones" name="restricciones">
@@ -1086,28 +1185,75 @@
                             <option value="Otra">Otra (especificar en comentarios)</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="cancion">Canción infaltable</label>
-                        <input 
-                            type="text" 
-                            id="cancion" 
-                            name="cancion" 
+                        <input
+                            type="text"
+                            id="cancion"
+                            name="cancion"
                             placeholder="¿Qué canción no puede faltar en la fiesta?"
                         >
                     </div>
 
                     <div class="form-group">
                         <label for="comentarios">Mensaje o comentarios</label>
-                        <textarea 
-                            id="comentarios" 
-                            name="comentarios" 
+                        <textarea
+                            id="comentarios"
+                            name="comentarios"
                             placeholder="Déjanos un mensaje..."
                         ></textarea>
                     </div>
-                    
+
                     <button type="submit" class="submit-btn" id="submitBtn">Confirmar asistencia</button>
                 </form>
+            </div>
+
+            <!-- 4. Alojamiento -->
+            <div class="section" id="alojamiento">
+                <div class="section-paw bottom-right">🐾</div>
+                <div class="section-star top-left-star">✦</div>
+                <div class="section-star top-right-star">✦</div>
+                <h2>Alojamiento</h2>
+                <p style="margin-bottom: 20px;">Por favor, contactar a Agus o Rama si desean pasar la noche en un hotel cercano</p>
+
+                <div class="hotels-list">
+                    <div class="hotel-item">
+                        <div class="hotel-name">KOS Pilar Hotel</div>
+                        <div class="hotel-rating">⭐⭐⭐⭐ (4.7/5)</div>
+                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel moderno con spa, piscina al aire libre y restaurante gourmet</p>
+                        <p style="text-align: left; font-size: 0.85em; color: #0f1c2e; margin-top: 5px;">📍 9 minutos en auto</p>
+                        <a href="https://www.google.com/maps/place/Kos+Pilar+Hotel/@-34.4355466,-58.8317723,17z/data=!3m1!4b1!4m9!3m8!1s0x95bc9deb36d471db:0x767b800d865d4633!5m2!4m1!1i2!8m2!3d-34.4355511!4d-58.8291974!16s%2Fg%2F11hd9d4gbs?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                    </div>
+
+                    <div class="hotel-item">
+                        <div class="hotel-name">Sheraton Pilar Hotel & Convention Center</div>
+                        <div class="hotel-rating">⭐⭐⭐⭐ (4.0/5)</div>
+                        <p style="text-align: left; font-size: 0.9em; color: #777;">Hotel rodeado de jardines con piscinas, spa y centro de convenciones</p>
+                        <p style="text-align: left; font-size: 0.85em; color: #0f1c2e; margin-top: 5px;">📍 13 minutos en auto</p>
+                        <a href="https://www.google.com/maps/place/Sheraton+Pilar+Hotel+%26+Convention+Center/@-34.4449015,-58.8479375,13z/data=!4m9!3m8!1s0x95bc9c50482ee15f:0x24a0e317272e8528!5m2!4m1!1i2!8m2!3d-34.4442425!4d-58.8650331!16s%2Fg%2F1tgz6nmg?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D" target="_blank" class="hotel-link">Ver en Google Maps →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Fotos -->
+            <div class="section" id="fotos">
+                <div class="section-paw top-left">🐾</div>
+                <div class="section-star top-right-star">✦</div>
+                <div class="section-star bottom-left-star">✦</div>
+                <h2>Fotos</h2>
+                <div class="photo-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carouselSlides">
+                            <!-- Las imágenes se cargarán aquí via JavaScript -->
+                        </div>
+                        <button class="carousel-nav prev" onclick="moveSlide(-1)">&#10094;</button>
+                        <button class="carousel-nav next" onclick="moveSlide(1)">&#10095;</button>
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <!-- Los indicadores se generarán aquí via JavaScript -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
