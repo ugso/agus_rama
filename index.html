@@ -879,23 +879,23 @@
 
         .rsvp-reset-btn {
             display: inline-block;
-            margin-top: 28px;
+            margin-top: 30px;
             font-family: 'Belleza', sans-serif;
-            font-size: 0.78em;
-            color: #ccc;
-            letter-spacing: 1.5px;
+            font-size: 0.9em;
+            color: #0f1c2e;
+            letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
-            border: none;
-            background: none;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(196, 170, 120, 0.25);
-            transition: color 0.2s ease, border-color 0.2s ease;
+            border: 1px solid rgba(196, 170, 120, 0.55);
+            background: transparent;
+            padding: 13px 30px;
+            border-radius: 2px;
+            transition: background 0.25s ease, border-color 0.25s ease;
         }
 
         .rsvp-reset-btn:hover {
-            color: #c4a265;
-            border-color: rgba(196, 170, 120, 0.6);
+            background: rgba(196, 170, 120, 0.1);
+            border-color: #c4a265;
         }
 
         /* ===== FOOTER ===== */
@@ -941,11 +941,11 @@
             opacity: 0.12;
         }
         .section-constellation line {
-            stroke: #9aaabf;
+            stroke: #c4a265;
             stroke-width: 0.8;
         }
         .section-constellation circle {
-            fill: #9aaabf;
+            fill: #c4a265;
         }
 
         /* Split section vertical divider */
@@ -1152,17 +1152,17 @@
             border-radius: 50%;
         }
 
-        .timeline-bride {
+        .timeline-couple {
             position: absolute;
             top: 50%;
             transform: translate(-50%, -100%);
+            display: flex;
+            align-items: flex-end;
+            gap: 0;
         }
 
-        .timeline-groom {
-            position: absolute;
-            right: -12px;
-            top: 50%;
-            transform: translateY(-100%);
+        .timeline-couple-bride {
+            margin-left: -6px;
         }
 
         .timeline-labels {
@@ -1323,45 +1323,83 @@
                         <div class="timeline-track">
                             <div class="timeline-fill" id="timelineFill"></div>
                             <div class="timeline-start-dot"></div>
-                            <svg class="timeline-bride" id="timelineBride" width="26" height="48" viewBox="0 0 26 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Veil trailing left/back -->
-                                <path d="M11 3 Q5 0 3 7 Q4 13 9 15" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
-                                <!-- Head -->
-                                <circle cx="13" cy="6" r="4" stroke="#0f1c2e" stroke-width="1.1"/>
-                                <!-- Body -->
-                                <line x1="13" y1="10" x2="13" y2="20" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <!-- Arms (left holds bouquet, right slightly back) -->
-                                <path d="M13 14 Q9 17 7 20" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
-                                <path d="M13 14 Q17 17 18 20" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
-                                <!-- Bouquet -->
-                                <circle cx="6" cy="22" r="2.5" stroke="#0f1c2e" stroke-width="0.9"/>
-                                <line x1="6" y1="24.5" x2="6" y2="27" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
-                                <!-- Dress / skirt bell shape -->
-                                <path d="M10 19 Q4 31 2 48" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <path d="M16 19 Q21 31 24 48" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <path d="M2 48 Q13 44 24 48" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
-                            </svg>
-                            <svg class="timeline-groom" width="24" height="50" viewBox="0 0 24 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Top hat brim -->
-                                <line x1="5" y1="7" x2="19" y2="7" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
-                                <!-- Hat body -->
-                                <path d="M8 7 L8 2 L16 2 L16 7" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-                                <!-- Head -->
-                                <circle cx="12" cy="11" r="4" stroke="#0f1c2e" stroke-width="1.1"/>
-                                <!-- Body -->
-                                <line x1="12" y1="15" x2="12" y2="27" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <!-- Jacket lapels -->
-                                <path d="M9 15 L12 19 L15 15" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                <!-- Arms -->
-                                <path d="M12 18 Q7 21 5 24" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
-                                <path d="M12 18 Q17 21 19 24" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
-                                <!-- Legs -->
-                                <path d="M12 27 Q9 37 8 50" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <path d="M12 27 Q15 37 16 50" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
-                                <!-- Shoes -->
-                                <path d="M7 49 Q7 51 10 50" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
-                                <path d="M15 49 Q15 51 18 50" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
-                            </svg>
+                            <div class="timeline-couple" id="timelineCouple">
+                                <!-- Groom (left figure, facing right) -->
+                                <svg class="timeline-couple-groom" width="28" height="58" viewBox="0 0 28 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Top hat crown -->
+                                    <path d="M7 1 L7 8 L19 8 L19 1 Z" stroke="#0f1c2e" stroke-width="0.9" stroke-linejoin="round"/>
+                                    <!-- Hat band -->
+                                    <line x1="7" y1="6" x2="19" y2="6" stroke="#0f1c2e" stroke-width="0.6"/>
+                                    <!-- Hat brim -->
+                                    <line x1="3" y1="9" x2="23" y2="9" stroke="#0f1c2e" stroke-width="1.2" stroke-linecap="round"/>
+                                    <!-- Head -->
+                                    <circle cx="13" cy="15" r="5" stroke="#0f1c2e" stroke-width="1.1"/>
+                                    <!-- Neck -->
+                                    <line x1="13" y1="20" x2="13" y2="23" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                    <!-- Bow tie left wing -->
+                                    <path d="M9 22 L13 24 L9 26" stroke="#0f1c2e" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <!-- Bow tie right wing -->
+                                    <path d="M17 22 L13 24 L17 26" stroke="#0f1c2e" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <!-- Jacket left edge -->
+                                    <path d="M8 23 Q8 31 9 38" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Jacket right edge -->
+                                    <path d="M18 23 Q18 31 17 38" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Lapels -->
+                                    <path d="M13 24 L9 29" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                    <path d="M13 24 L17 29" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                    <!-- Jacket bottom hem -->
+                                    <line x1="9" y1="38" x2="17" y2="38" stroke="#0f1c2e" stroke-width="0.7" stroke-linecap="round"/>
+                                    <!-- Waistcoat button -->
+                                    <circle cx="13" cy="33" r="0.8" fill="#0f1c2e"/>
+                                    <!-- Back arm (away from bride) -->
+                                    <path d="M9 28 Q4 32 3 36" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Forward arm (toward bride, linking) -->
+                                    <path d="M17 28 Q22 31 26 34" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Left leg (stepping back) -->
+                                    <path d="M11 38 Q8 47 7 57" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                    <!-- Right leg (stepping forward) -->
+                                    <path d="M15 38 Q18 47 19 57" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                    <!-- Left shoe -->
+                                    <path d="M5 56 Q4 58 9 57" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Right shoe -->
+                                    <path d="M18 56 Q18 58 22 57" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                </svg>
+                                <!-- Bride (right figure, walking together) -->
+                                <svg class="timeline-couple-bride" width="30" height="58" viewBox="0 0 30 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Veil flowing back (left) — two layers -->
+                                    <path d="M13 4 Q3 1 1 7 Q2 13 8 15" stroke="#0f1c2e" stroke-width="0.75" stroke-linecap="round"/>
+                                    <path d="M12 5 Q5 3 3 9" stroke="#0f1c2e" stroke-width="0.4" stroke-linecap="round"/>
+                                    <!-- Hair / updo hint -->
+                                    <path d="M11 3 Q15 0 19 3" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                    <!-- Head -->
+                                    <circle cx="15" cy="8" r="5" stroke="#0f1c2e" stroke-width="1.1"/>
+                                    <!-- Neck -->
+                                    <line x1="15" y1="13" x2="15" y2="17" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                    <!-- Body -->
+                                    <line x1="15" y1="17" x2="15" y2="26" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                    <!-- Left arm (toward groom, linking) -->
+                                    <path d="M13 20 Q7 24 4 27" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Right arm (holding bouquet) -->
+                                    <path d="M17 20 Q22 23 23 26" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Bouquet: main flower cluster -->
+                                    <circle cx="23" cy="27" r="2.5" stroke="#0f1c2e" stroke-width="0.9"/>
+                                    <!-- Bouquet: side flowers -->
+                                    <circle cx="20" cy="29" r="1.5" stroke="#0f1c2e" stroke-width="0.7"/>
+                                    <circle cx="25" cy="29.5" r="1.5" stroke="#0f1c2e" stroke-width="0.7"/>
+                                    <!-- Bouquet stem -->
+                                    <line x1="22" y1="31" x2="21" y2="35" stroke="#0f1c2e" stroke-width="0.7" stroke-linecap="round"/>
+                                    <!-- Bell dress left edge -->
+                                    <path d="M12 25 Q4 38 1 57" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                    <!-- Bell dress right edge -->
+                                    <path d="M18 25 Q25 38 27 57" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                    <!-- Dress hem -->
+                                    <path d="M1 57 Q14 53 27 57" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Dress centre lace detail -->
+                                    <path d="M15 25 Q14 38 14 50" stroke="#0f1c2e" stroke-width="0.4" stroke-linecap="round" stroke-dasharray="2 3"/>
+                                    <!-- Foot peeking from dress hem -->
+                                    <path d="M6 55 Q5 58 10 57" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <div class="timeline-labels">
@@ -1787,9 +1825,9 @@
             const progress = Math.min(Math.max((now - start) / (end - start), 0), 1);
             const percent = (progress * 100).toFixed(2);
             const fill = document.getElementById('timelineFill');
-            const bride = document.getElementById('timelineBride');
+            const couple = document.getElementById('timelineCouple');
             if (fill) fill.style.width = percent + '%';
-            if (bride) bride.style.left = percent + '%';
+            if (couple) couple.style.left = percent + '%';
         }
         updateTimeline();
 
