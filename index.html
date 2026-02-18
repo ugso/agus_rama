@@ -1024,14 +1024,14 @@
 
         .timeline-track-wrapper {
             position: relative;
-            padding-right: 24px;
+            padding-right: 16px;
         }
 
         .timeline-track {
             position: relative;
             height: 1px;
             background: rgba(196, 170, 120, 0.2);
-            margin: 24px 0 0;
+            margin: 58px 0 0;
         }
 
         .timeline-fill {
@@ -1056,18 +1056,14 @@
         .timeline-bride {
             position: absolute;
             top: 50%;
-            transform: translate(-50%, -55%);
-            font-size: 1.3em;
-            line-height: 1;
+            transform: translate(-50%, -100%);
         }
 
         .timeline-groom {
             position: absolute;
-            right: -24px;
+            right: -12px;
             top: 50%;
-            transform: translateY(-55%);
-            font-size: 1.3em;
-            line-height: 1;
+            transform: translateY(-100%);
         }
 
         .timeline-labels {
@@ -1228,8 +1224,45 @@
                         <div class="timeline-track">
                             <div class="timeline-fill" id="timelineFill"></div>
                             <div class="timeline-start-dot"></div>
-                            <div class="timeline-bride" id="timelineBride">👰</div>
-                            <span class="timeline-groom">🤵</span>
+                            <svg class="timeline-bride" id="timelineBride" width="26" height="48" viewBox="0 0 26 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Veil trailing left/back -->
+                                <path d="M11 3 Q5 0 3 7 Q4 13 9 15" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                <!-- Head -->
+                                <circle cx="13" cy="6" r="4" stroke="#0f1c2e" stroke-width="1.1"/>
+                                <!-- Body -->
+                                <line x1="13" y1="10" x2="13" y2="20" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <!-- Arms (left holds bouquet, right slightly back) -->
+                                <path d="M13 14 Q9 17 7 20" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                <path d="M13 14 Q17 17 18 20" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                <!-- Bouquet -->
+                                <circle cx="6" cy="22" r="2.5" stroke="#0f1c2e" stroke-width="0.9"/>
+                                <line x1="6" y1="24.5" x2="6" y2="27" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round"/>
+                                <!-- Dress / skirt bell shape -->
+                                <path d="M10 19 Q4 31 2 48" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <path d="M16 19 Q21 31 24 48" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <path d="M2 48 Q13 44 24 48" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                            </svg>
+                            <svg class="timeline-groom" width="24" height="50" viewBox="0 0 24 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Top hat brim -->
+                                <line x1="5" y1="7" x2="19" y2="7" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                <!-- Hat body -->
+                                <path d="M8 7 L8 2 L16 2 L16 7" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Head -->
+                                <circle cx="12" cy="11" r="4" stroke="#0f1c2e" stroke-width="1.1"/>
+                                <!-- Body -->
+                                <line x1="12" y1="15" x2="12" y2="27" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <!-- Jacket lapels -->
+                                <path d="M9 15 L12 19 L15 15" stroke="#0f1c2e" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Arms -->
+                                <path d="M12 18 Q7 21 5 24" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                <path d="M12 18 Q17 21 19 24" stroke="#0f1c2e" stroke-width="1" stroke-linecap="round"/>
+                                <!-- Legs -->
+                                <path d="M12 27 Q9 37 8 50" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <path d="M12 27 Q15 37 16 50" stroke="#0f1c2e" stroke-width="1.1" stroke-linecap="round"/>
+                                <!-- Shoes -->
+                                <path d="M7 49 Q7 51 10 50" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                                <path d="M15 49 Q15 51 18 50" stroke="#0f1c2e" stroke-width="0.9" stroke-linecap="round"/>
+                            </svg>
                         </div>
                     </div>
                     <div class="timeline-labels">
@@ -1239,6 +1272,7 @@
                             <span class="timeline-label-event">¡Nos comprometimos!</span>
                         </div>
                         <div class="timeline-label timeline-label-end">
+                            <span class="timeline-ring">💍</span>
                             <span class="timeline-label-date">02 · 05 · 2026</span>
                             <span class="timeline-label-event">¡Nos casamos!</span>
                         </div>
