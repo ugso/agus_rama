@@ -795,8 +795,86 @@
         }
 
         .rsvp-confirmed p {
-            color: #999;
+            color: #bbb;
             font-size: 0.9em;
+        }
+
+        /* ===== RSVP TEASER ===== */
+        .rsvp-teaser {
+            text-align: center;
+            padding: 22px 30px;
+            margin-bottom: 0;
+            border: 1px dashed rgba(196, 170, 120, 0.35);
+            border-radius: 2px;
+            background: rgba(253, 250, 246, 0.6);
+        }
+
+        .teaser-icon {
+            display: block;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .teaser-copy {
+            font-size: 0.9em;
+            color: #aaa;
+            line-height: 1.65;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== SURPRISE VIDEO (confirmed state) ===== */
+        .surprise-section {
+            margin-top: 35px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(196, 170, 120, 0.18);
+        }
+
+        .surprise-heading {
+            font-family: 'Belleza', sans-serif;
+            font-size: 1.15em;
+            color: #0f1c2e;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            opacity: 0.85;
+        }
+
+        .surprise-video {
+            margin: 0 auto;
+            max-width: 480px;
+        }
+
+        .video-placeholder-box {
+            background: #0f1c2e;
+            border-radius: 2px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(196, 170, 120, 0.12);
+        }
+
+        .video-play-btn {
+            font-size: 2.6em;
+            color: rgba(196, 162, 101, 0.45);
+            margin-bottom: 14px;
+            line-height: 1;
+        }
+
+        .video-placeholder-label {
+            font-size: 0.72em;
+            color: rgba(196, 170, 120, 0.35);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .surprise-caption {
+            margin-top: 18px;
+            font-size: 0.85em;
+            color: #bbb;
+            letter-spacing: 0.3px;
         }
 
         /* ===== FOOTER ===== */
@@ -860,7 +938,7 @@
 
         @media (max-width: 768px) {
             html {
-                scroll-padding-top: 0;
+                scroll-padding-top: 60px;
             }
 
             body {
@@ -869,7 +947,7 @@
 
             .sticky-nav {
                 padding: 10px 15px;
-                position: relative;
+                position: fixed;
             }
 
             .sticky-title {
@@ -1108,7 +1186,7 @@
             <div class="sticky-title" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Agus & Rama</div>
             <div class="nav-links">
                 <a href="#detalles">Detalles</a>
-                <a href="#ubicacion">Llegar</a>
+                <a href="#ubicacion">Cómo llegar</a>
                 <a href="#rsvp">RSVP</a>
                 <a href="#regalos">Regalos</a>
                 <a href="#alojamiento">Alojamiento</a>
@@ -1122,7 +1200,7 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#detalles" class="mobile-nav-link">Detalles</a>
-            <a href="#ubicacion" class="mobile-nav-link">Llegar</a>
+            <a href="#ubicacion" class="mobile-nav-link">Cómo llegar</a>
             <a href="#rsvp" class="mobile-nav-link">RSVP</a>
             <a href="#regalos" class="mobile-nav-link">Regalos</a>
             <a href="#alojamiento" class="mobile-nav-link">Alojamiento</a>
@@ -1371,10 +1449,25 @@
                     <circle cx="56" cy="63" r="2"/>
                 </svg>
                 <h2>Confirmación de asistencia</h2>
+                <div class="rsvp-teaser" id="rsvpTeaser">
+                    <span class="teaser-icon">🎁</span>
+                    <p class="teaser-copy">Completá el formulario y descubrí la sorpresa<br>que preparamos especialmente para vos</p>
+                </div>
                 <div class="rsvp-confirmed" id="rsvpConfirmed">
                     <span class="confirmed-icon">✦</span>
                     <h3>¡Gracias por confirmar!</h3>
                     <p>Tu respuesta fue registrada.<br>Nos vemos en la fiesta.</p>
+                    <div class="surprise-section">
+                        <p class="surprise-heading">Tu sorpresa</p>
+                        <div class="surprise-video">
+                            <!-- Placeholder: reemplazar con <video controls src="..."> cuando el video esté listo -->
+                            <div class="video-placeholder-box">
+                                <div class="video-play-btn">▶</div>
+                                <span class="video-placeholder-label">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="surprise-caption">Un mensaje especial de nuestra parte para vos</p>
+                    </div>
                 </div>
                 <div id="alertContainer"></div>
                 <form class="rsvp-form" id="rsvpForm">
@@ -1816,6 +1909,7 @@
                 } else if (result.success) {
                     document.getElementById('rsvpForm').style.display = 'none';
                     document.getElementById('alertContainer').style.display = 'none';
+                    document.getElementById('rsvpTeaser').style.display = 'none';
                     document.getElementById('rsvpConfirmed').style.display = 'block';
                     localStorage.setItem('rsvp_confirmed', 'true');
                 } else {
@@ -1853,6 +1947,7 @@
         // ===== RSVP CONFIRMED STATE (persistent) =====
         if (localStorage.getItem('rsvp_confirmed') === 'true') {
             document.getElementById('rsvpForm').style.display = 'none';
+            document.getElementById('rsvpTeaser').style.display = 'none';
             document.getElementById('rsvpConfirmed').style.display = 'block';
         }
 
