@@ -1015,6 +1015,95 @@
             color: #5a5248;
             word-break: break-all;
         }
+
+        /* ===== WEDDING TIMELINE ===== */
+        .wedding-timeline {
+            margin-top: 35px;
+            padding: 0 5px;
+        }
+
+        .timeline-track-wrapper {
+            position: relative;
+            padding-right: 24px;
+        }
+
+        .timeline-track {
+            position: relative;
+            height: 1px;
+            background: rgba(196, 170, 120, 0.2);
+            margin: 24px 0 0;
+        }
+
+        .timeline-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(to right, rgba(196, 162, 101, 0.5), #c4a265);
+        }
+
+        .timeline-start-dot {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 5px;
+            background: #c4a265;
+            border-radius: 50%;
+        }
+
+        .timeline-bride {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -55%);
+            font-size: 1.3em;
+            line-height: 1;
+        }
+
+        .timeline-groom {
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            transform: translateY(-55%);
+            font-size: 1.3em;
+            line-height: 1;
+        }
+
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 14px;
+        }
+
+        .timeline-label {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .timeline-label-end {
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .timeline-ring {
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .timeline-label-date {
+            font-size: 0.7em;
+            color: #bbb;
+            letter-spacing: 1.5px;
+        }
+
+        .timeline-label-event {
+            font-size: 0.78em;
+            color: #7a6060;
+        }
     </style>
 </head>
 <body>
@@ -1131,6 +1220,27 @@
                         <div class="countdown-item">
                             <div class="countdown-number" id="seconds">0</div>
                             <div class="countdown-label">Segundos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wedding-timeline">
+                    <div class="timeline-track-wrapper">
+                        <div class="timeline-track">
+                            <div class="timeline-fill" id="timelineFill"></div>
+                            <div class="timeline-start-dot"></div>
+                            <div class="timeline-bride" id="timelineBride">👰</div>
+                            <span class="timeline-groom">🤵</span>
+                        </div>
+                    </div>
+                    <div class="timeline-labels">
+                        <div class="timeline-label">
+                            <span class="timeline-ring">💍</span>
+                            <span class="timeline-label-date">03 · 06 · 2025</span>
+                            <span class="timeline-label-event">¡Nos comprometimos!</span>
+                        </div>
+                        <div class="timeline-label timeline-label-end">
+                            <span class="timeline-label-date">02 · 05 · 2026</span>
+                            <span class="timeline-label-event">¡Nos casamos!</span>
                         </div>
                     </div>
                 </div>
@@ -1519,6 +1629,20 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // ===== WEDDING TIMELINE =====
+        function updateTimeline() {
+            const start = new Date('2025-06-03').getTime();
+            const end = new Date('2026-05-02').getTime();
+            const now = new Date().getTime();
+            const progress = Math.min(Math.max((now - start) / (end - start), 0), 1);
+            const percent = (progress * 100).toFixed(2);
+            const fill = document.getElementById('timelineFill');
+            const bride = document.getElementById('timelineBride');
+            if (fill) fill.style.width = percent + '%';
+            if (bride) bride.style.left = percent + '%';
+        }
+        updateTimeline();
 
         // ===== AUTOCOMPLETADO DE NOMBRES =====
         const nombreInput = document.getElementById('nombreBusqueda');
