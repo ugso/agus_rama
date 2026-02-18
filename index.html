@@ -877,6 +877,27 @@
             letter-spacing: 0.3px;
         }
 
+        .rsvp-reset-btn {
+            display: inline-block;
+            margin-top: 28px;
+            font-family: 'Belleza', sans-serif;
+            font-size: 0.78em;
+            color: #ccc;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(196, 170, 120, 0.25);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .rsvp-reset-btn:hover {
+            color: #c4a265;
+            border-color: rgba(196, 170, 120, 0.6);
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
@@ -1183,7 +1204,7 @@
 <body>
     <nav class="sticky-nav">
         <div class="sticky-nav-content">
-            <div class="sticky-title" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Agus & Rama</div>
+            <div class="sticky-title" onclick="localStorage.removeItem('rsvp_confirmed'); window.location.reload()">Agus & Rama</div>
             <div class="nav-links">
                 <a href="#detalles">Detalles</a>
                 <a href="#ubicacion">Cómo llegar</a>
@@ -1468,6 +1489,7 @@
                         </div>
                         <p class="surprise-caption">Un mensaje especial de nuestra parte para vos</p>
                     </div>
+                    <button class="rsvp-reset-btn" id="rsvpResetBtn">Registrar otra respuesta</button>
                 </div>
                 <div id="alertContainer"></div>
                 <form class="rsvp-form" id="rsvpForm">
@@ -1950,6 +1972,17 @@
             document.getElementById('rsvpTeaser').style.display = 'none';
             document.getElementById('rsvpConfirmed').style.display = 'block';
         }
+
+        // ===== RSVP RESET =====
+        document.getElementById('rsvpResetBtn').addEventListener('click', function() {
+            localStorage.removeItem('rsvp_confirmed');
+            document.getElementById('rsvpConfirmed').style.display = 'none';
+            document.getElementById('rsvpTeaser').style.display = '';
+            document.getElementById('rsvpForm').style.display = '';
+            document.getElementById('rsvpForm').reset();
+            document.getElementById('invitadoId').value = '';
+            document.getElementById('nombreCompleto').value = '';
+        });
 
         // ===== HAMBURGER MENU =====
         const hamburgerBtn = document.getElementById('hamburgerBtn');
