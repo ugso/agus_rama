@@ -233,7 +233,7 @@
             margin-bottom: 80px;
             position: relative;
             padding: 40px 0;
-            border-bottom: 1px solid rgba(180, 140, 140, 0.2);
+            border-bottom: 1px solid rgba(180, 160, 110, 0.2);
         }
 
         .section:last-child {
@@ -248,7 +248,7 @@
             transform: translateX(-50%);
             font-size: 20px;
             opacity: 0.18;
-            color: #c9a0a0;
+            color: #c4a265;
         }
 
         .section:last-child::after {
@@ -347,7 +347,7 @@
             padding: 22px 8px 10px;
             background: transparent;
             position: relative;
-            border-top: 2px solid #e8cece;
+            border-top: 2px solid #e8d5b0;
         }
 
         .detail-icon {
@@ -381,7 +381,7 @@
             border-radius: 2px;
             text-align: center;
             margin: 30px 0;
-            border: 1px solid rgba(200, 160, 160, 0.2);
+            border: 1px solid rgba(196, 170, 120, 0.2);
         }
 
         .countdown-grid {
@@ -395,7 +395,7 @@
             background: #fdfaf6;
             padding: 20px 10px;
             border-radius: 2px;
-            border-top: 2px solid #e8cece;
+            border-top: 2px solid #e8d5b0;
         }
 
         .countdown-number {
@@ -555,7 +555,7 @@
             padding: 40px;
             border-radius: 2px;
             margin-top: 30px;
-            border: 1px solid rgba(200, 160, 160, 0.2);
+            border: 1px solid rgba(196, 170, 120, 0.2);
         }
 
         .form-group {
@@ -590,8 +590,8 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #c9a0a0;
-            box-shadow: 0 0 0 3px rgba(201, 160, 160, 0.15);
+            border-color: #c4a265;
+            box-shadow: 0 0 0 3px rgba(196, 162, 101, 0.2);
         }
 
         .form-group textarea {
@@ -648,7 +648,7 @@
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: #c9a0a0;
+            background: #c4a265;
             color: white;
             border: none;
             border-radius: 2px;
@@ -662,11 +662,11 @@
         }
 
         .submit-btn:hover {
-            background: #b58888;
+            background: #b0904f;
         }
 
         .submit-btn:disabled {
-            background: #d8c0c0;
+            background: #d9c8a0;
             cursor: not-allowed;
         }
 
@@ -679,14 +679,14 @@
             padding: 20px;
             border-radius: 2px;
             margin-bottom: 15px;
-            border: 1px solid rgba(200, 160, 160, 0.2);
-            box-shadow: 0 2px 8px rgba(150, 100, 100, 0.06);
+            border: 1px solid rgba(196, 170, 120, 0.2);
+            box-shadow: 0 2px 8px rgba(140, 120, 70, 0.06);
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .hotel-item:hover {
-            box-shadow: 0 4px 14px rgba(150, 100, 100, 0.12);
-            border-color: rgba(200, 160, 160, 0.4);
+            box-shadow: 0 4px 14px rgba(140, 120, 70, 0.12);
+            border-color: rgba(196, 170, 120, 0.4);
         }
 
         .hotel-name {
@@ -776,7 +776,7 @@
             background: #fdf8f4;
             border-radius: 2px;
             margin-top: 30px;
-            border: 1px solid rgba(200, 160, 160, 0.2);
+            border: 1px solid rgba(196, 170, 120, 0.2);
         }
 
         .confirmed-icon {
@@ -854,7 +854,7 @@
         /* Split section vertical divider */
         .split-section .split-col:first-child {
             padding-right: 25px;
-            border-right: 1px solid rgba(180, 140, 140, 0.18);
+            border-right: 1px solid rgba(180, 160, 110, 0.18);
         }
         .split-section .split-col:last-child {
             padding-left: 25px;
@@ -939,7 +939,7 @@
                 padding-right: 0;
                 border-right: none;
                 padding-bottom: 20px;
-                border-bottom: 1px solid rgba(180, 140, 140, 0.18);
+                border-bottom: 1px solid rgba(180, 160, 110, 0.18);
             }
             .split-section .split-col:last-child {
                 padding-left: 0;
@@ -1059,8 +1059,8 @@
                 </div>
             </div>
 
-            <!-- 2. Split: Información General (left) + ¿Cómo llegar? (right) -->
-            <div class="section split-section" id="detalles">
+            <!-- 2. Información General -->
+            <div class="section" id="detalles">
                 <div class="section-paw top-right">🐾</div>
                 <div class="section-star bottom-left-star">✦</div>
                 <!-- Southern Cross — top right ornament -->
@@ -1073,56 +1073,53 @@
                     <circle cx="56" cy="32" r="2.2"/>
                     <circle cx="44" cy="18" r="1.2"/>
                 </svg>
-
-                <!-- Left column: Información General -->
-                <div class="split-col">
-                    <h2>Información General</h2>
-                    <div class="details-grid">
-                        <div class="detail-item">
-                            <span class="detail-icon">📅</span>
-                            <div class="detail-label">Fecha</div>
-                            <div class="detail-value">2 de Mayo<br>2026</div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">🕐</span>
-                            <div class="detail-label">Hora</div>
-                            <div class="detail-value">17:00 hs</div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">📍</span>
-                            <div class="detail-label">Lugar</div>
-                            <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">🤵</span>
-                            <div class="detail-label">Dress Code</div>
-                            <div class="detail-value">Formal</div>
-                        </div>
+                <h2>Información General</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <div class="detail-label">Fecha</div>
+                        <div class="detail-value">2 de Mayo<br>2026</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🕐</span>
+                        <div class="detail-label">Hora</div>
+                        <div class="detail-value">17:00 hs</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <div class="detail-label">Lugar</div>
+                        <div class="detail-value">Darwin Tortugas<br>Salón Laguna</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🤵</span>
+                        <div class="detail-label">Dress Code</div>
+                        <div class="detail-value">Formal</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right column: ¿Cómo llegar? -->
-                <div class="split-col" id="ubicacion">
-                    <h2>¿Cómo llegar?</h2>
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                    <div class="map-links">
-                        <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
-                            <svg viewBox="0 0 48 48" width="40" height="40">
-                                <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"/>
-                                <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"/>
-                                <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"/>
-                                <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"/>
-                                <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"/>
-                            </svg>
-                        </a>
-                        <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
-                            <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze">
-                        </a>
-                    </div>
-                    <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
+            <!-- 3. ¿Cómo llegar? -->
+            <div class="section" id="ubicacion">
+                <div class="section-star top-right-star">✦</div>
+                <h2>¿Cómo llegar?</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.9582823456235!2d-58.51857492346494!3d-34.64883937294868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9f1c1c1c1c1%3A0x46b6613d23488ce9!2sDarwin%20Tortugas!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
                 </div>
+                <div class="map-links">
+                    <a href="https://www.google.com/maps/place/Darwin+Tortugas/@-34.6488394,-58.5185749,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x46b6613d23488ce9!8m2!3d-34.6488394!4d-58.516!16s%2Fg%2F11c1z7z7z7" target="_blank" class="map-link" title="Abrir en Google Maps">
+                        <svg viewBox="0 0 48 48" width="40" height="40">
+                            <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"/>
+                            <path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"/>
+                            <path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"/>
+                            <path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"/>
+                            <path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"/>
+                        </svg>
+                    </a>
+                    <a href="https://waze.com/ul?q=Darwin%20Tortugas&navigate=yes" target="_blank" class="map-link" title="Abrir en Waze">
+                        <img src="https://images.seeklogo.com/logo-png/61/1/waze-app-icon-logo-png_seeklogo-619303.png" alt="Waze">
+                    </a>
+                </div>
+                <p style="margin-top: 25px;">El lugar cuenta con estacionamiento disponible</p>
             </div>
 
             <!-- 3. RSVP -->
